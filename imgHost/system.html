@@ -1,0 +1,104 @@
+<h2>code gs for table data show google sheet</h2>
+    <pre id="output2" style="background: #f4f4f4; padding: 10px; border: 1px solid #ddd;">
+
+      
+// Google Apps Script Code (Google Sheet me jaake Apps Script me daalein)
+function doGet() {
+  var sheet = SpreadsheetApp.openById("10L4euJ1jHK2Um_bENZLcWjuyljHqwnsHuBqEV5c8HM8").getSheetByName("imgHost");
+  var data = sheet.getDataRange().getValues();
+  var jsonData = [];
+  
+  for (var i = 1; i < data.length; i++) {
+    jsonData.push({
+      name: data[i][0], // A column
+      father: data[i][1], // B column
+      url: data[i][2], // C column
+      photo: data[i][3] // D column
+    });
+  }
+  
+  return ContentService.createTextOutput(JSON.stringify(jsonData))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Web app deploy karne ke liye "Deploy as Web App" select karein
+// Access type: "Anyone with the link" set karein
+
+
+</pre>
+
+
+<h2>img host code gs for google sheet </h2>
+    <pre id="output2" style="background: #f4f4f4; padding: 10px; border: 1px solid #ddd;">
+
+      
+function doGet() {
+  return HtmlService.createHtmlOutput(`
+  <html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background: #f4f4f4; }
+      .container { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); width: 90%; max-width: 400px; margin: auto; }
+      input, button { margin-bottom: 10px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; }
+      button { background: #007BFF; color: white; border: none; cursor: pointer; }
+      button:hover { background: #0056b3; }
+      .spinner { display: none; width: 30px; height: 30px; border: 4px solid #ccc; border-top: 4px solid #007BFF; border-radius: 50%; animation: spin 1s linear infinite; margin: 10px auto; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Upload Image </h2>
+      <input type="text" id="imageName" placeholder="Enter Student Name">
+      <input type="text" id="phoneNumber" placeholder="Enter father name...">
+      <input type="file" id="fileInput">
+      <button onclick="uploadFile()">Upload</button>
+      <button> <a href="https://snpskhamra.github.io/app/imgHost/">Go Back </a></button>
+      <div class="spinner" id="spinner"></div>
+    </div>
+
+    <script>
+      function uploadFile() {
+        const file = document.getElementById('fileInput').files[0];
+        const name = document.getElementById('imageName').value;
+        const phone = document.getElementById('phoneNumber').value;
+        if (!file || !name || !phone) { 
+          Swal.fire("Error!", "Please enter Student Name, Father Name, and select a file!", "error");
+          return; 
+        }
+
+        document.getElementById("spinner").style.display = "block";
+
+        const fr = new FileReader();
+        fr.onload = function(e) {
+          google.script.run.withSuccessHandler((data) => {
+            document.getElementById("spinner").style.display = "none";
+            Swal.fire("Success!", "File uploaded successfully!", "success");
+          }).uploadToDrive(name, phone, e.target.result);
+        };
+        fr.readAsDataURL(file);
+      }
+    </script>
+  </body>
+  </html>`);
+}
+
+function uploadToDrive(name, phone, fileData) {
+  const folder = DriveApp.getFolderById("1B_NHAaJCKq9234he2dWaxwXLtUyZ6fVp"); 
+  const blob = Utilities.newBlob(Utilities.base64Decode(fileData.split(",")[1]), MimeType.JPEG, name);
+  const file = folder.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW);
+  
+  const fileUrl = `https://lh3.googleusercontent.com/d/${file.getId()}=s0`;
+
+  saveToSheet(name, phone, fileUrl);
+  return { name: name, phone: phone, url: fileUrl };
+}
+
+function saveToSheet(name, phone, url) {
+  const sheet = SpreadsheetApp.openById("10L4euJ1jHK2Um_bENZLcWjuyljHqwnsHuBqEV5c8HM8").getSheetByName("imgHost"); 
+  sheet.appendRow([name, phone, url]); 
+}
+
+</pre>
