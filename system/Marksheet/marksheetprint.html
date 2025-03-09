@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Print System</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 CDN -->
+  <style>
+    
+ .scltxt{
+  font-size:12.5px;
+  rotate: 0deg;
+  opacity:20%;
+  position:absolute;
+  margin-top:-1400px;
+  width:3000px;
+  
+}
+  body {  
+        font-family: Arial, sans-serif;  
+    }  table{  
+          border-collapse: collapse;  
+
+            
+ }  
+th, td {  
+    border: 1px solid black;  
+    padding: 5px 3px;  
+      
+}  
+th {  
+    background-color: #d7f0ff;  
+}  
+   .img {  
+   position:absolute;  
+   display: block;  
+   width: 99%;  
+   
+   }  
+   table {  
+   width: 100%;  
+   text-align: center;  
+   padding:3px 3px;  
+   position:absolute;  
+   margin-top:100px;  
+   padding:3ox 3px; 
+   font-size:22px;
+   }  
+ 
+  
+     
+ 
+   .nam{  
+  opacity:0%;  
+  border:none;  
+  padding:2px;  
+   }  
+   .name{  
+ border:none;  
+ background-color:transparent;  
+ text-align:left;  
+ padding:2px;  
+
+   }  
+   .photo{  
+  width:140px;  
+  height:180px;  
+  position:absolute;  
+  border:1px solid black;  
+  border-radius:3px;  
+  margin-top:280px;  
+  margin-left:1333px;  
+   }  
+   .bgimg{  
+  width:90%;  
+  opacity:15%;  
+  position:absolute;  
+  margin-left:300px;  
+  margin-bottom:200px;  
+  margin-top:-90px; 
+  display:none;
+
+   }  
+   h2{  
+position:absolute;  
+  margin-left:570px;  
+  margin-top:135px;  
+  color:red;
+     font-size:35px;
+   }  
+   h1{  
+ color:white;  
+ background-color:navy;  
+ position:absolute;  
+ padding:5px 30px;  
+ border-radius:5px;  
+ margin-left:688px;  
+ margin-top:185px;  
+ font-size:25px;  
+   }  
+   .ns{  
+  width:80%;  
+  margin-left:110px;
+  font-size:24px;
+
+   }  
+   .aoaa{  
+  position:absolute;  
+  margin-left:550px;  
+  margin-top:70px; 
+  font-size:26px;
+   }  
+   .lt{  
+  width:40%;  
+  font-size:18px;
+  margin-top:190px;
+  text-align:left;
+     
+   }  
+  .st{  
+  width:40%;  
+  font-size:18px;  
+    position: absolute;
+    margin-left:915px; 
+    text-align:left;
+   }   
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+@page {  
+margin: 1px 2px 2px 2px;  
+} 
+ 
+  
+@media print {  
+body{  
+background: linear-gradient(to bottom, lightblue, navy) !important;  
+-webkit-print-color-adjust: exact; /* Ensures color prints properly */  
+print-color-adjust: exact;  
+}  
+.btn{  
+display:none;  
+}
+
+        .invoice {
+            page-break-after: always; /* Ensure each invoice starts on a new page */
+        }
+    
+.inone{
+   display:none;
+}
+
+ .scltxt{
+  font-size:12.5px;
+  rotate: 0deg;
+  opacity:20%;
+  position:absolute;
+  margin-top:-1400px;
+  width:3000px;
+  
+}
+  body {  
+        font-family: Arial, sans-serif;  
+    }  table{  
+          border-collapse: collapse;  
+
+            
+ }  
+th, td {  
+    border: 1px solid black;  
+    padding: 5px 3px;  
+      
+}  
+th {  
+    background-color: #d7f0ff;  
+}  
+   .img {  
+   position:absolute;  
+   display: block;  
+   width: 100%;  
+   
+   }  
+   table {  
+   width: 100%;  
+   text-align: center;  
+   padding:3px 3px;  
+   position:absolute;  
+   margin-top:100px;  
+   padding:3ox 3px; 
+   font-size:22px;
+   }  
+ 
+  
+     
+ 
+   .nam{  
+  opacity:0%;  
+  border:none;  
+  padding:2px;  
+   }  
+   .name{  
+ border:none;  
+ background-color:transparent;  
+ text-align:left;  
+ padding:2px;  
+
+   }  
+   .photo{  
+  width:140px;  
+  height:180px;  
+  position:absolute;  
+  border:1px solid black;  
+  border-radius:3px;  
+  margin-top:280px;  
+  margin-left:1333px;  
+   }  
+   .bgimg{  
+  width:90%;  
+  opacity:15%;  
+  position:absolute;  
+  margin-left:300px;  
+  margin-bottom:200px;  
+  margin-top:-90px; 
+  display:none;
+
+   }  
+   h2{  
+position:absolute;  
+  margin-left:570px;  
+  margin-top:135px;  
+  color:red;
+     font-size:35px;
+   }  
+   h1{  
+ color:white;  
+ background-color:navy;  
+ position:absolute;  
+ padding:5px 30px;  
+ border-radius:5px;  
+ margin-left:688px;  
+ margin-top:185px;  
+ font-size:25px;  
+   }  
+   .ns{  
+  width:80%;  
+  margin-left:110px;
+  font-size:24px;
+
+   }  
+   .aoaa{  
+  position:absolute;  
+  margin-left:550px;  
+  margin-top:70px; 
+  font-size:26px;
+   }  
+   .lt{  
+  width:40%;  
+  font-size:18px;
+  margin-top:190px;
+  text-align:left;
+     
+   }  
+  .st{  
+  width:40%;  
+  font-size:18px;  
+    position: absolute;
+    margin-left:915px; 
+    text-align:left;
+   }  
+}
+
+
+  </style>
+
+</head>
+
+<div class="inone" >
+    <h2>Marksheet Print System</h2>
+    <button onclick="fetchData()" class="inone" >Load Marksheet</button>
+    <button onclick="printData()" class="inone" >Print</button>
+  </div>
+    <div id="invoiceContainer"></div>
+
+    <script>
+        let invoices = [];
+
+        function fetchData() {
+            // Show SweetAlert spinner
+            Swal.fire({
+                title: 'Loading Marksheet...',
+                html: '<div class="spinner"></div>',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            fetch("https://script.google.com/macros/s/AKfycbwoaRz9vdr0AsWghJdw28GiFip8I58RhB8wGG7gUt5_QSWowizRGAv1L3ONK23zXzs3sg/exec")
+                .then(response => response.json())
+                .then(data => {
+                    Swal.close(); // Hide spinner once data is loaded
+                    let container = document.getElementById("invoiceContainer");
+                    container.innerHTML = "";
+                    invoices = []; // Reset invoices array
+
+                    data.forEach(row => {
+                        let invoice = document.createElement("div");
+                        invoice.className = "invoice";
+                        invoice.style.display = "block"; // Show invoices properly
+                        invoice.innerHTML = `
+                  <body> 
+                   <div class="r" >  
+                   <img class="img"  src="https://i.ibb.co/bjXPkv4M/20250309-104934.jpg">  
+                   <img class="photo" src="${row[8]}">    <br> <br> <br><br><br><h2>Annual Examination - 2025</h2> 
+                   <h1>MARKSHEET</h1>
+                   
+                  <br><br> <br><br><br><br><br><br>
+                   
+                   <table class="ns" >   
+                   <tr>  
+                   <th class="name" >Student Name</th><td class="name" >${row[0]}</td> <th class="name" >Roll Number</th><td class="name" >${row[1]}</td><td class="name" ></td><td class="nam" >.</td><td class="nam"  >.</td>    
+                   </tr>  
+                   <tr>   
+                   <th class="name" >Father Name</th><td class="name" >${row[2]}</td> <th class="name" >Class</th><td class="name" >${row[5]}</td>   
+                   </tr>  
+                   <tr>   
+                   <th class="name" >Mother Name</th><td class="name" >${row[3]}</td>  <th class="name" >Aadhar Number</th><td class="name" >${row[6]}</td>   
+                   </tr>  
+                   <tr>   
+                   <th class="name" >Date of Birth</th><td class="name" >${row[4]}</td> <th class="name" >SSSM ID </th><td class="name" >${row[7]}</td>   
+                   </tr>  
+                   </table>  <br><br><br><br><br><br><br><br><br>
+                   
+                   <h3 class="aoaa" >ASSESSMENT OF ACADEMIC AREAS</h3> 
+                   <table class="hide">  <br>
+                   <tr>  
+                   <th rowspan="3">S.N.</th>  
+                   <th rowspan="3">SUBJECT</th>  
+                   <th colspan="3" bgcolor="#add8e6">MONTHLY EVALUATION</th>  
+                   <th colspan="3" bgcolor="#f0e68c">HALF YEARLY EVALUATION</th>  
+                   <th colspan="2" bgcolor="#90ee90">WRITTEN EVALUATION</th>  
+                   <th colspan="3" bgcolor="#87cefa">ANNUAL PROJECT</th>  
+                   <th rowspan="3">TOTAL SCORE</th>  
+                   <th rowspan="3">GRADE</th>  
+                   <td class="nam" >....</td>  
+                   </tr>  
+                   <tr>  
+                   <th colspan="3">SCORE/SURCHARGE<br>40/10 NUMBER</th>  
+                   <th colspan="3">SCORE/SURCHARGE<br>60/20 NUMBER</th>  
+                   <th rowspan="2">SCORE<br>60 NUMBER</th>  
+                   <th rowspan="2">GRADE</th>  
+                   <th colspan="3">SCORE/SURCHARGE<br>40/10 NUMBER</th>  
+                   </tr>  
+                   <tr>  
+                   <th>SCORE</th>  
+                   <th>SURCH</th>  
+                   <th>GRADE</th>  
+                   <th>SCORE</th>  
+                   <th>SURCH</th>  
+                   <th>GRADE</th>  
+                   <th>SCORE</th>  
+                   <th>SURCH</th>  
+                   <th>GRADE</th>  
+                   </tr>  
+                   <tr>  
+                   <td>1</td>  
+                   <td>HINDI</td>  
+                   <td>${row[9]}</td><td>${row[10]}</td> <td>${row[11]}</td>  
+                   <td>${row[27]}</td> <td>${row[28]}</td> <td>${row[29]}</td>  
+                   <td>${row[45]}</td> <td>${row[46]}</td>  
+                   <td>${row[57]}</td> <td>${row[58]}</td> <td>${row[59]}</td>  
+                   <td>${row[75]}</td> <td>${row[76]}</td>  
+                   </tr>  
+                   <tr>  
+                   <td>2</td>  
+                   <td>ENGLISH</td>  
+                   <td>${row[12]}</td> <td>${row[13]}</td> <td>${row[14]}</td>  
+                   <td>${row[30]}</td> <td>${row[31]}</td> <td>${row[32]}</td>  
+                   <td>${row[47]}</td> <td>${row[48]}</td>  
+                   <td>${row[60]}</td> <td>${row[61]}</td> <td>${row[62]}</td>  
+                   <td>${row[77]}</td> <td>${row[78]}</td>  
+                   </tr>  
+                   <tr>  
+                   <td>3</td>  
+                   <td>MATHEMATICS</td>  
+                   <td>${row[15]}</td> <td>${row[16]}</td> <td>${row[17]}</td>  
+                   <td>${row[33]}</td> <td>${row[34]}</td> <td>${row[35]}</td>  
+                   <td>${row[49]}</td> <td>${row[50]}</td>  
+                   <td>${row[63]}</td> <td>${row[64]}</td> <td>${row[65]}</td>  
+                   <td>${row[79]}</td> <td>${row[80]}</td>  
+                   </tr>  
+                   <tr>  
+                   <td>4</td>  
+                   <td>SCIENCE/EVS</td>  
+                   <td>${row[18]}</td> <td>${row[19]}</td> <td>${row[20]}</td>  
+                   <td>${row[36]}</td> <td>${row[37]}</td> <td>${row[38]}</td>  
+                   <td>${row[51]}</td> <td>${row[52]}</td>  
+                   <td>${row[66]}</td> <td>${row[67]}</td> <td>${row[68]}</td>  
+                   <td>${row[81]}</td> <td>${row[82]}</td>  
+                   </tr>  
+                   <tr>  
+                   <td>5</td>  
+                   <td>SOCIAL SCIENCE</td>  
+                   <td>${row[21]}</td> <td>${row[22]}</td> <td>${row[23]}</td>  
+                   <td>${row[39]}</td> <td>${row[40]}</td> <td>${row[41]}</td>  
+                   <td>${row[53]}</td> <td>${row[54]}</td>  
+                   <td>${row[69]}</td> <td>${row[70]}</td> <td>${row[71]}</td>  
+                   <td>${row[83]}</td> <td>${row[84]}</td>  
+                   </tr>  
+                   <tr>  
+                   <td>6</td>  
+                   <td>SANSKRIT</td>  
+                   <td>${row[24]}</td> <td>${row[25]}</td> <td>${row[26]}</td>  
+                   <td>${row[42]}</td> <td>${row[43]}</td> <td>${row[44]}</td>  
+                   <td>${row[55]}</td> <td>${row[56]}</td>  
+                   <td>${row[72]}</td> <td>${row[73]}</td> <td>${row[74]}</td>  
+                   <td>${row[85]}</td> <td>${row[86]}</td>  
+                   </tr>  
+                   </table>  
+                   <img class="bgimg" src="https://i.ibb.co/Z1K0Dm9L/20250224-094736.png"  >  
+                   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                   <table class="lt" >  <tr>  
+                   <td>75-100%</td>  
+                   <td>A - GRADE</td>  
+                   <td>EXCELLENT</td>  
+                   </tr>  
+                   <tr>  
+                   <td>60-74%</td>  
+                   <td>B - GRADE</td>  
+                   <td>BEST</td>  
+                   </tr>  
+                   <tr>  
+                   <td>45-59%</td>  
+                   <td>C - GRADE</td>  
+                   <td>GOOD</td>  
+                   </tr>  
+                   <tr>  
+                   <td>33-44%</td>  
+                   <td>D - GRADE</td>  
+                   <td>GENERAL</td>  
+                   </tr>  
+                   <tr>  
+                   <td>BELOW 33%</td>  
+                   <td>E - GRADE</td>  
+                   <td>IMPROVABLE</td>  
+                   </tr>
+                   
+                   </table>  
+                   </div>  
+                   
+                   <br><br><br><br><br>
+                   
+                   <table class="st">
+    <tr>
+        <td width="100px"><b>Promoted to Class</b></td>
+        <td width="50px">${row[89]}</td>
+    </tr>
+    <tr>
+        <td><b>Result</b></td>
+        <td>${row[88]}</td>
+    </tr>
+    <tr>
+        <td><b>Grade</b></td>
+        <td>${row[87]}</td>
+    </tr>
+    <tr>
+        <td><b>Total Teaching Days</b></td>
+        <td>${row[90]}</td>
+    </tr>
+    <tr>
+        <td><b>Student Present Days</b></td>
+        <td>${row[91]}</td>
+    </tr>
+</table>
+
+                        
+                      </body> 
+                      
+                      <br><br><br><br><br><br><br><br><br><br><br> 
+                        `;
+                        container.appendChild(invoice);
+                        invoices.push(invoice); // Store invoice elements
+                    });
+                })
+                .catch(error => {
+                    Swal.close(); // Hide spinner on error
+                    Swal.fire("Error", "Failed to load invoices. Please try again.", "error");
+                    console.error("Error fetching data:", error);
+                });
+        }
+
+        function printData() {
+            if (invoices.length === 0) {
+                Swal.fire("Warning", "No data to print. Please load Marksheet first.", "warning");
+                return;
+            }
+
+            setTimeout(() => {
+                window.print();
+            }, 500); // 500ms delay so content fully loads before print
+        }
+    </script>
+
+
+</html>
