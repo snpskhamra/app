@@ -11,9 +11,21 @@
 </head>
 
 <div class="inone" >
-    <h2>6HT 8TH Marksheet Print System</h2>
-    <button onclick="fetchData()" class="inone" >Load Marksheet</button>
-    <button onclick="printData()" class="inone" >Print</button>
+    <h2>1st to  5th Marksheet Print System</h2>
+  
+  
+  
+    <button onclick="fetchData()" class="inone btn1" >Load Marksheet</button>
+    <button onclick="printData()" class="inone btn1" >Print</button>  
+  
+
+  
+  <!------sheet link Button----------->
+  <a href="https://docs.google.com/spreadsheets/d/1H6ISZpDh73neECZOmYtDKnQTw-f5fGZe9f8Tdqk7rB0/edit?gid=0#gid=0"><button class=" inone btn1">Sheet Link</button></a>
+ <!-----##End-sheet link Button----------->
+  
+  
+  
   </div>
     <div id="invoiceContainer"></div>
 
@@ -239,9 +251,6 @@
     </table>
 
                    
-              
-                   
-                   
                    
               
      <p class="issueDate">Issue Date :${row[10]}</p>
@@ -296,4 +305,21 @@
     </script>
   
 </html>
-
+<style>
+.btn1 {
+      padding: 6px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      border: 1.4px solid #000;
+      border-radius: 15px 0 10px 0;
+}
+.btn1:hover {
+      background-color: #04AA6D;
+      color: white;
+}
+</style>
