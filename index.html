@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Account</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <style> 
+         :root { --brand: #10b981; }
+    body { font-family: 'Poppins', sans-serif; }
+    .fade-enter { opacity: 0; transform: translateY(8px); }
+    .fade-enter-active { opacity: 1; transform: translateY(0); transition: all .25s ease; }
+    .fade-leave { opacity: 1; transform: translateY(0); }
+    .fade-leave-active { opacity: 0; transform: translateY(-8px); transition: all .2s ease; }
+    .nav-pill { @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition; }
+    .nav-active { background: rgb(16 185 129 / .12); color: var(--brand); }
+	</style>
+    
+</head>
+<body class="bg-stone-100 min-h-screen flex flex-col">
+  <!-- Top Bar / Brand -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-stone-200">
+    <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl grid place-items-center bg-emerald-100 text-emerald-600">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <p class="text-sm text-stone-500 leading-none">Secure Access</p>
+          <h1 class="text-lg font-semibold text-stone-800 leading-none">Sahaja Nirmal Public School, Khamra</h1>
+        </div>
+      </div>
+
+      <!-- Navigation Pills -->
+      <nav class="hidden sm:flex items-center gap-2" aria-label="Navigasi autentikasi">
+        <a data-route="#login" class="px-4 py-2 nav-pill rounded-full text-stone-600 hover:text-emerald-600 hover:bg-emerald-50" href="#login">
+          <i class="fa-solid fa-right-to-bracket"></i> <span>Login</span>
+        </a>
+        <a data-route="#register" class="px-4 py-2 nav-pill rounded-full text-stone-600 hover:text-emerald-600 hover:bg-emerald-50" href="#register">
+          <i class="fa-solid fa-user-plus"></i> <span>Register</span>
+        </a>
+        <a data-route="#forgot" class="px-4 py-2 nav-pill rounded-full text-stone-600 hover:text-emerald-600 hover:bg-emerald-50" href="#forgot">
+          <i class="fa-solid fa-key"></i> <span>Forgot Password</span>
+        </a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" class="sm:hidden text-stone-700 text-xl" aria-label="Buka menu">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="sm:hidden hidden border-t border-stone-200 bg-white">
+      <nav class="max-w-5xl mx-auto px-4 py-2 flex gap-2">
+        <a data-route="#login" class="flex-1 nav-pill justify-center text-stone-600 hover:text-emerald-600 hover:bg-emerald-50" href="#login">
+          <i class="fa-solid fa-right-to-bracket"></i> <span class="ml-2">Login</span>
+        </a>
+        <a data-route="#register" class="flex-1 nav-pill justify-center text-stone-600 hover:text-emerald-600 hover:bg-emerald-50" href="#register">
+          <i class="fa-solid fa-user-plus"></i> <span class="ml-2">Register</span>
+        </a>
+        <a data-route="#forgot" class="flex-1 nav-pill justify-center text-stone-600 hover:text-emerald-600 hover:bg-emerald-50" href="#forgot">
+          <i class="fa-solid fa-key"></i> <span class="ml-2">Forgot</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-1 grid place-items-center px-4 py-10">
+    <section class="w-full max-w-4xl">
+      <div class="grid md:grid-cols-2 gap-6 items-stretch">
+        <!-- Visual / Tips -->
+        <aside class="hidden md:flex">
+          <div class="relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white p-8 shadow-xl">
+            <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10"></div>
+            <h2 class="text-2xl font-bold mb-3"><i class="fa-solid fa-lock mr-2"></i>Modern Security</h2>
+            <p class="text-emerald-50 mb-6">Use strong passwords, enable 2FA, and never share your OTP.</p>
+            <ul class="space-y-3 text-emerald-50/90 text-sm">
+              <li class="flex items-start gap-3"><i class="fa-solid fa-shield mr-1 mt-1"></i> Encrypted data transfer.</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-fingerprint mr-1 mt-1"></i> Social login ready.</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-bolt mr-1 mt-1"></i> Fast & responsive UI.</li>
+            </ul>
+            <img alt="decor" class="absolute -bottom-8 -left-8 opacity-20 rotate-12 pointer-events-none" src="https://svgur.com/i/12vP.svg" />
+          </div>
+        </aside>
+
+        <!-- Card -->
+        <div class="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
+          <!-- Dynamic Header -->
+          <div id="cardHeader" class="px-6 py-5 border-b border-stone-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div id="cardIcon" class="h-10 w-10 rounded-xl grid place-items-center bg-emerald-100 text-emerald-600">
+                <i class="fa-solid fa-right-to-bracket"></i>
+              </div>
+              <div>
+                <h3 id="cardTitle" class="text-xl font-semibold text-stone-800">SNPS Khamra</h3>
+                <p id="cardSubtitle" class="text-sm text-stone-500">Access all features in one click.</p>
+              </div>
+            </div>
+            <a id="altLink" href="#register" class="text-sm text-emerald-600 hover:underline">Create Account</a> 
+          </div>
+
+          <!-- Forms Container -->
+          <div class="p-6">
+            <!-- LOGIN -->
+            <form id="form-login" class="space-y-4" autocomplete="on">
+              <div>
+                <label class="block text-sm font-medium text-stone-700 mb-1">Email</label>
+                <div class="relative">
+                  <input name="email" type="email" inputmode="email" required placeholder="you@example.com" class="w-full rounded-lg border border-stone-300 bg-stone-50 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                  <i class="fa-solid fa-envelope absolute right-3 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                </div>
+              </div> 
+              <div>
+                <label class="block text-sm font-medium text-stone-700 mb-1">Password</label>
+                <div class="relative">
+                  <input id="loginPass" name="password" type="password" required placeholder="••••••••" class="w-full rounded-lg border border-stone-300 bg-stone-50 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                  <button type="button" class="toggle-pass absolute right-3 top-1/2 -translate-y-1/2 text-stone-400" data-target="loginPass" aria-label="Tampilkan/Sembunyikan password">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <label class="inline-flex items-center gap-2 text-sm text-stone-600">
+                  <input type="checkbox" class="rounded border-stone-300 text-emerald-600 focus:ring-emerald-500" /> Remember me
+                </label>
+                <a class="text-sm text-emerald-600 hover:underline" href="#forgot">Forgot password?</a>
+              </div>
+              <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 text-white font-semibold px-5 py-3 hover:bg-emerald-700 transition disabled:opacity-60">
+                <span class="btn-text"> Login</span>
+              </button>
+            </form>
+
+            <!-- REGISTER -->
+            <form id="form-register" class="space-y-4 hidden" autocomplete="on">
+              <div>
+                <label class="block text-sm font-medium text-stone-700 mb-1">Full Name</label>
+                <div class="relative">
+                  <input name="nama" type="text" required placeholder="Nama lengkap" class="w-full rounded-lg border border-stone-300 bg-stone-50 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                  <i class="fa-solid fa-user absolute right-3 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-stone-700 mb-1">Email</label>
+                <div class="relative">
+                  <input name="email" type="email" required placeholder="you@example.com" class="w-full rounded-lg border border-stone-300 bg-stone-50 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                  <i class="fa-solid fa-envelope absolute right-3 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-stone-700 mb-1">Password</label>
+                <div class="relative">
+                  <input id="regPass" name="password" type="password" minlength="6" required placeholder="Minimal 6 karakter" class="w-full rounded-lg border border-stone-300 bg-stone-50 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                  <button type="button" class="toggle-pass absolute right-3 top-1/2 -translate-y-1/2 text-stone-400" data-target="regPass" aria-label="Tampilkan/Sembunyikan password">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+                        <button type="submit" class="w-full bg-emerald-600 text-white p-3 rounded-full hover:bg-emerald-700 flex justify-center items-center gap-2">
+            <span class="btn-text">Register</span>
+          </button>
+            </form>
+
+            <!-- FORGOT -->
+            <form id="form-forgot" class="space-y-4 hidden" autocomplete="on">
+              <p class="text-sm text-stone-600"> Enter your email to receive password reset instructions.</p>
+              <div>
+                <label class="block text-sm font-medium text-stone-700 mb-1">Email</label>
+                <div class="relative">
+                  <input name="email" type="email" required placeholder="you@example.com" class="w-full rounded-lg border border-stone-300 bg-stone-50 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                  <i class="fa-solid fa-envelope absolute right-3 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                </div>
+              </div>
+              <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 text-white font-semibold px-5 py-3 hover:bg-emerald-700 transition disabled:opacity-60">
+                <span class="btn-text">Send Instructions</span>
+              </button>
+              <div class="text-center">
+                <a href="#login" class="text-sm text-emerald-600 hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> ← Back to Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="resultModal" class="fixed inset-0 bg-black/40 hidden place-items-center p-4 z-50">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-stone-200 flex items-center gap-3">
+        <div class="h-10 w-10 rounded-lg grid place-items-center bg-emerald-100 text-emerald-600">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h4 id="modalTitle" class="text-lg font-semibold text-stone-800">Berhasil</h4>
+      </div>
+      <div id="modalBody" class="px-6 py-4 text-sm text-stone-700 space-y-1"></div>
+      <div class="px-6 py-4 border-t border-stone-200">
+        <button id="closeModal" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 text-white font-semibold px-5 py-3 hover:bg-emerald-700">
+          <i class="fa-solid fa-xmark"></i> Try Again
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-8 text-center text-sm text-stone-500">
+    <p>
+      <i class="fa-regular fa-copyright"></i> <span id="year"></span>
+      • Prem Janghela, 9752776923.
+    </p>
+  </footer>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- server -->
+  <script src="https://trollifyindustry.github.io/premjanghela/js/demo.js"></script>
+  <script src="https://trollifyindustry.github.io/snpskhamra/admin/server.js"></script>
+  <script src="https://trollifyindustry.github.io/snpskhamra/admin/server-admin.js"></script>
+  <script src="https://trollifyindustry.github.io/snpskhamra/admin/login/login.js"></script>
+</body>
+</html>
+ 
